@@ -1,18 +1,18 @@
 <?php
 /**
  * @package KissHerder
- * @version 1.0
+ * @version 1.1
  */
 /*
 Plugin Name: KissHerder
 Plugin URI: http://grasshopperherder.com/
 Description: Easily add KissMetrics code and user tracking
 Author: Tristan Kromer, Peter Backx
-Version: 1.0
+Version: 1.1
 Author URI: http://grasshopperherder.com/
 License: GPLv2
 
-Copyright 2011 Tristan Kromer, Peter Backx (email : tristan@grasshopperherder.com)
+Copyright 2012 Tristan Kromer, Peter Backx (email : tristan@grasshopperherder.com)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -35,8 +35,11 @@ if ( !is_admin() ) {
 	$api_key = $options['api_key'];
 	if(!empty($api_key)) {
 		require_once( plugin_dir_path(__FILE__).'/includes/user.php' );
-		add_action('wp_footer', 'kissherder_display');
+		add_action('wp_head', 'kissherder_display');
 		add_action('wp_enqueue_scripts', 'kissherder_javascript');
+		if($options['show_footer']) {
+			add_action('wp_footer', 'kissherder_powered_by');
+		}
 	}
 }
 
@@ -51,7 +54,8 @@ function kissherder_create_options() {
       'comment_event'   => 'Comment form submitted',
       'comment_options' => '',
       'read_event'   => 'Read article',
-      'read_options' => ''
+      'read_options' => '',
+      'show_footer' => 'on',
     );
     $dbOptions = get_option("kissherder_options");
     if(!empty($dbOptions)) {

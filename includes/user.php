@@ -1,6 +1,6 @@
 <?php
 /*
-Copyright 2011 Tristan Kromer, Peter Backx (email : tristan@grasshopperherder.com)
+Copyright 2012 Tristan Kromer, Peter Backx (email : tristan@grasshopperherder.com)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -54,6 +54,10 @@ function kissherder_javascript() {
 														   'commentOptions'   => $options['comment_options'] ? $options['comment_options'] : '{}',
 														   'readEvent'        => $options['read_event'],
 														   'readOptions'      => $options['read_options'] ? $options['read_options'] : '{}' ) );
+}
+
+function kissherder_powered_by() {
+	echo '<p style="text-align:center; background-color:rgba(0,0,0,0.05);">Metrics Powered by KissHerder by GrasshopperHerder.com</p>';
 }
 
 ?>
